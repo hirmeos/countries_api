@@ -30,7 +30,8 @@ web.config.debug = debug_mode()
 SECRET_KEY = os.environ['SECRET_KEY']
 # Define routes
 urls = (
-    "/countries(/?)", "countriesctrl.CountryController"
+    "/countries(/?)", "countriesctrl.CountryController",
+    "/names(/?)", "countrynamesctrl.CountrynameController"
 )
 
 try:
@@ -138,6 +139,7 @@ def build_clause(attribute, values):
 
 
 import countriesctrl  # noqa: F401
+import countrynamesctrl  # noqa: F401
 
 if __name__ == "__main__":
     logger.info("Starting API...")

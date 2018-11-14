@@ -11,12 +11,12 @@ web.config.debug = debug_mode()
 class CountrynameController(object):
     """Handle country names queries"""
 
-    @json_response
-    @api_response
-    @check_token
     def GET(self, name):
         raise Error(NOTALLOWED)
 
+    @json_response
+    @api_response
+    @check_token
     def POST(self, name):
         """Add a name to an existing country"""
         logger.debug("Data: %s" % (web.data()))

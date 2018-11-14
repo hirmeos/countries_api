@@ -1,7 +1,7 @@
 import psycopg2
 from aux import logger_instance
 from api import db
-from errors import Error, FATAL
+from errors import Error, FATAL, NORESULT
 
 logger = logger_instance(__name__)
 
@@ -58,6 +58,11 @@ class Country(object):
         return [(x["country_name"]) for x in names]
 
     @staticmethod
+    def delete_name(name):
+        options = dict(name=name)
+        return db.delete('country_name', options, where="country_name = $name")
+
+    @staticmethod
     def get_from_country_id(country_id):
         params = dict(country_id=country_id)
         clause = "AND country_id = $country_id"
@@ -69,7 +74,10 @@ class Country(object):
         # the id - otherwise we miss other names of the same country
         country_id = db.select('country_name', dict(name=country_name),
                                what="country_id", where="country_name = $name")
-        params = dict(country_id=country_id.first()["country_id"])
+        try:
+            params = dict(country_id=country_id.first()["country_id"])
+        except TypeError:
+            raise Error(NORESULT)
         clause = "AND country_id = $country_id"
         return Country.get_all(clause, params)
 

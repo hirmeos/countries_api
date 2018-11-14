@@ -4,6 +4,7 @@ import json
 NOTFOUND     = 10
 NOTALLOWED   = 20
 BADPARAMS    = 30
+BADFILTERS   = 40
 NORESULT     = 50
 FATAL        = 80
 UNAUTHORIZED = 90
@@ -15,6 +16,7 @@ _level_messages = {
     NOTFOUND:     'Not Found.',
     NOTALLOWED:   'Not Allowed.',
     BADPARAMS:    'Invalid parameters provided.',
+    BADFILTERS:   'Invalid filters supplied.',
     NORESULT:     'No records have matched your search criteria.',
     FATAL:        'Something terrible has happened.',
     UNAUTHORIZED: 'Authentication is needed.',
@@ -26,6 +28,7 @@ _level_statuses = {
     NOTFOUND:     '404 Not Found',
     NOTALLOWED:   '405 Method Not Allowed',
     BADPARAMS:    '400 Bad Request',
+    BADFILTERS:   '400 Bad Request',
     NORESULT:     '404 Not Found',
     FATAL:        '500 Internal Server Error',
     UNAUTHORIZED: '401 Unauthorized',
@@ -37,6 +40,7 @@ _level_codes = {
     NOTFOUND:     404,
     NOTALLOWED:   405,
     BADPARAMS:    400,
+    BADFILTERS:   400,
     NORESULT:     404,
     FATAL:        500,
     UNAUTHORIZED: 401,

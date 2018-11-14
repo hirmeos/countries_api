@@ -1,0 +1,29 @@
+version: "3.5"
+
+services:
+  countries_db:
+    image: openbookpublishers/countries_db
+    container_name: "countries_db"
+    restart: unless-stopped
+    volumes:
+      - db:/var/lib/postgresql/data
+      - /etc/localtime:/etc/localtime:ro
+    env_file:
+      - ./config/db.env
+
+  countries_api:
+    image: openbookpublishers/countries_api
+    container_name: "countries_api"
+    restart: unless-stopped
+    ports:
+      - 8383:8080
+    environment:
+      - DB_HOST=countries_db
+    env_file:
+      - ./config/api.env
+      - ./config/db.env
+    depends_on:
+      - countries_db
+
+volumes:
+  db:

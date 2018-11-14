@@ -6,7 +6,6 @@ services:
     container_name: "countries_db"
     restart: unless-stopped
     volumes:
-      - db:/var/lib/postgresql/data
       - /etc/localtime:/etc/localtime:ro
     env_file:
       - ./config/db.env
@@ -24,6 +23,3 @@ services:
       - ./config/db.env
     depends_on:
       - countries_db
-
-volumes:
-  db:

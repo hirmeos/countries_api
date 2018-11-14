@@ -46,6 +46,9 @@ class CountrynameController(object):
     def PUT(self, name):
         raise Error(NOTALLOWED)
 
+    @json_response
+    @api_response
+    @check_token
     def DELETE(self, name):
         """Delete a country name"""
         logger.debug("Data: %s" % (web.data()))

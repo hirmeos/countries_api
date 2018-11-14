@@ -39,6 +39,9 @@ class CountryController(object):
 
         return countries
 
+    @json_response
+    @api_response
+    @check_token
     def POST(self, name):
         """Create a country"""
         logger.debug("Data: %s" % (web.data()))
